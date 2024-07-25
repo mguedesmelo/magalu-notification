@@ -5,19 +5,20 @@ import java.io.Serial;
 import org.springframework.stereotype.Component;
 
 import com.magalu.notification.core.exception.BusinessException;
-import com.magalu.notification.domain.dto.NotificationRequestDto;
+import com.magalu.notification.domain.entity.Notification;
 
 @Component
-public class NotificationBusinessValidation extends BaseBusinessValidation<NotificationRequestDto> {
+public class NotificationBusinessValidation extends BaseBusinessValidation<Notification> {
 	@Serial
 	private static final long serialVersionUID = -5677795817075873892L;
 
 	@Override
-	public void checkBeforeSave(NotificationRequestDto notificationRequest) {
-		validateNotEmpty(notificationRequest.getMessage(), "Message");
-		validateNotEmpty(notificationRequest.getScheduledDateTime(), "Scheduled date");
-		validateNotEmpty(notificationRequest.getNotificationChannels(), "Notification type");
-		notificationRequest.getNotificationChannels().forEach(channel -> {
+	public void checkBeforeSave(Notification notification) {
+		clearErrorMessages();
+		validateNotEmpty(notification.getMessage(), "Message");
+		validateNotEmpty(notification.getScheduledDateTime(), "Scheduled date");
+		validateNotEmpty(notification.getNotificationChannels(), "Notification type");
+		notification.getNotificationChannels().forEach(channel -> {
 			validateNotEmpty(channel.getName(), "notification channel");
 			validateNotEmpty(channel.getSendTo(), "send to");
 

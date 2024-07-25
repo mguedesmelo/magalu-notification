@@ -30,6 +30,10 @@ public abstract class BaseBusinessValidation<T> implements Serializable {
 				.build());
 	}
 
+	protected void clearErrorMessages() {
+		this.errorMessages.clear();
+	}
+
 	protected Set<ErrorMessage> getErrorMessages() {
 		return this.errorMessages;
 	}

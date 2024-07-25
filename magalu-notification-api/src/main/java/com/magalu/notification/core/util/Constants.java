@@ -5,6 +5,8 @@ public class Constants {
 		// Empty
 	}
 
+	public static final String UNABLE_TO_LOCATE = "Unable to locate the %s";
+
 	public static final long TASK_INTERVAL = 60l * 1000l; // 1200000 milliseconds = 20 minutes
 
     public static final String PATTERN_DD_MM_YYYY = "dd/MM/yyyy";

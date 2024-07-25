@@ -42,15 +42,15 @@ public class NotificationService extends BaseService {
 	}
 
 	public NotificationResponseDto save(NotificationRequestDto notificationRequest) {
-		this.notificationBusinessValidation.checkBeforeSave(notificationRequest);
 		Notification notification = notificationFactory.createNotification(notificationRequest);
+		this.notificationBusinessValidation.checkBeforeSave(notification);
 		return notificationFactory.createNotificationResponse(this.notificationRepository.save(notification));
 	}
 
 	public NotificationResponseDto update(NotificationRequestDto notificationRequest) {
-		this.notificationBusinessValidation.checkBeforeSave(notificationRequest);
 		return this.notificationRepository.findById(notificationRequest.getId()).map(notification -> {
 			notification = this.notificationFactory.updateNotification(notification, notificationRequest);
+			this.notificationBusinessValidation.checkBeforeSave(notification);
 			return notificationFactory.createNotificationResponse(this.notificationRepository.save(notification));
 			}).orElseThrow(() -> new RecordNotFoundException("user"));
 	}

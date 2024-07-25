@@ -7,7 +7,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.magalu.notification.core.util.Constants;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,6 +29,7 @@ public abstract class BaseNotificationDto implements Serializable {
 
 	private Long id;
 
+	@JsonFormat(pattern = Constants.PATTERN_DD_MM_YYYY_HH_MM)
 	private LocalDateTime scheduledDateTime;
 
 	private String message;
