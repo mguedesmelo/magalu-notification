@@ -21,6 +21,7 @@ import com.magalu.notification.core.exception.BusinessException;
 import com.magalu.notification.core.exception.RecordNotFoundException;
 import com.magalu.notification.core.exception.data.BusinessExceptionResult;
 import com.magalu.notification.core.exception.data.ResponseMessage;
+import com.magalu.notification.core.util.Constants;
 
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.ValidationException;
@@ -50,7 +51,7 @@ public class MagaluNotificationExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(ValidationException.class)
     public ResponseEntity<ResponseMessage> handleValidationException(ValidationException e) {
-        return createErrorsResponseEntity("Invalid fields", HttpStatus.BAD_REQUEST);
+        return createErrorsResponseEntity(Constants.INVALID_FIELDS, HttpStatus.BAD_REQUEST);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -69,10 +70,10 @@ public class MagaluNotificationExceptionHandler {
     @ExceptionHandler({MethodArgumentNotValidException.class})
     public ResponseEntity<Map<String, String>> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>(0);
-        errors.put("Description", "Invalid fields");
+        errors.put("Description", Constants.INVALID_FIELDS);
         errors.putAll(ex.getBindingResult().getAllErrors().stream()
-                .filter(error -> error instanceof FieldError)
-                .map(error -> (FieldError) error)
+                .filter(FieldError.class::isInstance)
+                .map(FieldError.class::cast)
                 .collect(Collectors.toMap(
                     FieldError::getField,
                     FieldError::getDefaultMessage
@@ -83,7 +84,7 @@ public class MagaluNotificationExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<ResponseMessage> handleConstraintViolationException(ConstraintViolationException e) {
-        return createErrorsResponseEntity("Invalid fields", HttpStatus.BAD_REQUEST);
+        return createErrorsResponseEntity(Constants.INVALID_FIELDS, HttpStatus.BAD_REQUEST);
     }
 
     @ResponseStatus(HttpStatus.UNAUTHORIZED)

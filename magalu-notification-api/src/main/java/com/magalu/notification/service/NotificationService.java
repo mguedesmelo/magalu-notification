@@ -6,16 +6,20 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.magalu.notification.core.exception.BusinessException;
 import com.magalu.notification.core.exception.RecordNotFoundException;
+import com.magalu.notification.core.util.Constants;
+import com.magalu.notification.core.util.StringUtil;
 import com.magalu.notification.domain.business.NotificationBusinessValidation;
 import com.magalu.notification.domain.dto.NotificationRequestDto;
 import com.magalu.notification.domain.dto.NotificationResponseDto;
 import com.magalu.notification.domain.entity.Notification;
+import com.magalu.notification.domain.entity.NotificationChannel;
 import com.magalu.notification.domain.factory.NotificationFactory;
 import com.magalu.notification.repository.NotificationRepository;
+import com.magalu.notification.sender.BaseSender;
 import com.magalu.notification.sender.SenderFactory;
 
-import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 
 @Service
@@ -52,7 +56,7 @@ public class NotificationService extends BaseService {
             notification = this.notificationFactory.updateNotification(notification, notificationRequest);
             this.notificationBusinessValidation.checkBeforeSave(notification);
             return notificationFactory.createNotificationResponse(this.notificationRepository.save(notification));
-            }).orElseThrow(() -> new RecordNotFoundException("user"));
+            }).orElseThrow(() -> new RecordNotFoundException("notification"));
     }
 
     public void delete(Long id) {
@@ -60,15 +64,34 @@ public class NotificationService extends BaseService {
         this.notificationRepository.deleteById(id);
     }
 
-    @Transactional
+    public NotificationResponseDto activateDeactivate(Long id, String notificationType, Boolean active) {
+		return this.notificationRepository.findById(id).map(notification -> {
+			List<NotificationChannel> channelsToUpdate = notification.getNotificationChannels();
+			if (StringUtil.isNotEmpty(notificationType)) {
+				BusinessException.throwInvalidIf("Invalid notification type",
+						StringUtil.doesNotContains(notificationType, Constants.VALID_NOTIFICATION_TYPES));
+				channelsToUpdate = notification.getNotificationChannels()
+						.stream()
+						.filter(notificationChannel -> notificationType.equalsIgnoreCase(notificationChannel.getType()))
+						.toList();
+			}
+			channelsToUpdate.forEach(notificationChannel -> notificationChannel.setActive(active));
+			return notificationFactory.createNotificationResponse(this.notificationRepository.save(notification));
+		}).orElseThrow(() -> new RecordNotFoundException("notification"));
+    }
+
+
     public void sendNotifications() {
-        List<Notification> notificationsToSend = notificationRepository.findByScheduledDateTimeBeforeAndSentDateTimeIsNull(LocalDateTime.now());
-        notificationsToSend.forEach(notification -> {
-            notification.getNotificationChannels().forEach(notificationChannel -> this.senderFactory
-                    .createSender(notificationChannel.getName())
-                    .send(notificationChannel.getSendTo(), notification.getMessage()));
-            notification.setSentDateTime(LocalDateTime.now());
-            notificationRepository.save(notification);
-        });
+		List<Notification> notificationsToSend = notificationRepository.findPendingNotifications(LocalDateTime.now());
+		notificationsToSend.forEach(notification -> {
+			notification.getNotificationChannels().forEach(notificationChannel -> {
+				BaseSender sender = senderFactory.createSender(notificationChannel.getType());
+				// Add improvement to resend notification in case of failure
+				if (sender.send(notificationChannel.getSendTo(), notification.getMessage())) {
+					notificationChannel.setSentDateTime(LocalDateTime.now());
+				}
+			});
+			notificationRepository.save(notification);
+		});
     }
 }

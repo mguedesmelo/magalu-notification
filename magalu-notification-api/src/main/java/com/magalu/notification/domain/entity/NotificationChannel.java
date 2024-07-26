@@ -1,6 +1,7 @@
 package com.magalu.notification.domain.entity;
 
 import java.io.Serial;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,8 +26,14 @@ public class NotificationChannel extends BaseEntity {
 
     @Column(name = "name", length = 10, nullable = false)
     @Pattern(regexp = "sms|push|whatsapp|email", message = "The notification channel must be one of the following: SMS, Push, WhatsApp or Email")
-    private String name;
+    private String type;
 
     @Column(name = "send_to", length = 250, nullable = false)
     private String sendTo;
+
+    @Column(name = "sent_date_time")
+    private LocalDateTime sentDateTime;
+
+    @Column(name = "active")
+    private Boolean active;
 }

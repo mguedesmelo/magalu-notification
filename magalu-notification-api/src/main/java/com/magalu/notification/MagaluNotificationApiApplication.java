@@ -32,12 +32,12 @@ public class MagaluNotificationApiApplication implements CommandLineRunner {
                         .scheduledDateTime(LocalDateTime.now().plusMinutes(3))
                         .notificationChannels(List.of(
                                 NotificationChannelDto.builder()
-                                        .name("sms")
-                                        .sendTo("81 555-5555")
+                                        .type("sms")
+                                        .sendTo("81 111-1111")
                                         .build(),
                                 NotificationChannelDto.builder()
-                                        .name("push")
-                                        .sendTo("81 555-5555")
+                                        .type("push")
+                                        .sendTo("81 222-2222")
                                         .build()))
                         .build());
 
@@ -48,15 +48,15 @@ public class MagaluNotificationApiApplication implements CommandLineRunner {
                         .scheduledDateTime(LocalDateTime.now().plusMinutes(5))
                         .notificationChannels(List.of(
                                 NotificationChannelDto.builder()
-                                        .name("sms")
-                                        .sendTo("81 555-5555")
+                                        .type("sms")
+                                        .sendTo("81 333-3333")
                                         .build(),
                                 NotificationChannelDto.builder()
-                                        .name("push")
-                                        .sendTo("81 555-5555")
+                                        .type("push")
+                                        .sendTo("81 444-4444")
                                         .build(),
                                 NotificationChannelDto.builder()
-                                        .name("whatsapp")
+                                        .type("whatsapp")
                                         .sendTo("81 555-5555")
                                         .build()
                         ))

@@ -18,11 +18,11 @@ public class NotificationBusinessValidation extends BaseBusinessValidation<Notif
         validateNotEmpty(notification.getMessage(), "Message");
         validateNotEmpty(notification.getScheduledDateTime(), "Scheduled date");
         validateNotEmpty(notification.getNotificationChannels(), "Notification type");
-        notification.getNotificationChannels().forEach(channel -> {
-            validateNotEmpty(channel.getName(), "notification channel");
-            validateNotEmpty(channel.getSendTo(), "send to");
+        notification.getNotificationChannels().forEach(notificationChannel -> {
+            validateNotEmpty(notificationChannel.getType(), "notification channel");
+            validateNotEmpty(notificationChannel.getSendTo(), "send to");
             
-            validateIn(channel.getName(), "notification channel", "sms", "push", "whatsapp", "email");
+            validateIn(notificationChannel.getType(), "notification channel", "sms", "push", "whatsapp", "email");
         });
 
         BusinessException.throwIfHasErrorMessages(getErrorMessages());

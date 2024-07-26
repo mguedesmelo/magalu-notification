@@ -1,8 +1,11 @@
 package com.magalu.notification.core.util;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -37,30 +40,30 @@ class StringUtilTest {
     }
 
     @Test
-    void isNullOrEmptyReturnsTrueForSomeNull() {
-        assertTrue(StringUtil.isNullOrEmpty("a", "b", "c", null, "e"));
-        assertTrue(StringUtil.isNullOrEmpty("a", "b", "c", "", "e"));
+    void isEmptyReturnsTrueForSomeNull() {
+        assertTrue(StringUtil.isEmpty("a", "b", "c", null, "e"));
+        assertTrue(StringUtil.isEmpty("a", "b", "c", "", "e"));
     }
 
     @Test
-    void isNullOrEmptyReturnsTrueForNoOneNull() {
-        assertFalse(StringUtil.isNullOrEmpty("a", "b", "c", "d", "e"));
+    void isEmptyReturnsTrueForNoOneNull() {
+        assertFalse(StringUtil.isEmpty("a", "b", "c", "d", "e"));
     }
 
     @Test
-    void isNullOrEmptyReturnsTrueForNull() {
+    void isEmptyReturnsTrueForNull() {
         String s = null;
-        assertTrue(StringUtil.isNullOrEmpty(s));
+        assertTrue(StringUtil.isEmpty(s));
     }
 
     @Test
-    void isNullOrEmptyReturnsTrueForEmptyString() {
-        assertTrue(StringUtil.isNullOrEmpty(""));
+    void isEmptyReturnsTrueForEmptyString() {
+        assertTrue(StringUtil.isEmpty(""));
     }
 
     @Test
-    void isNullOrEmptyReturnsFalseForNonEmptyString() {
-        assertFalse(StringUtil.isNullOrEmpty("Hello World"));
+    void isEmptyReturnsFalseForNonEmptyString() {
+        assertFalse(StringUtil.isEmpty("Hello World"));
     }
 
     @Test
@@ -90,7 +93,7 @@ class StringUtilTest {
 
     @Test
      void joinJoinsStringsWithSeparator() {
-        assertEquals("Hello,World", StringUtil.join(Arrays.asList("Hello", "World"), ","));
+        assertEquals("Hello,World", StringUtil.join(List.of("Hello", "World"), ","));
     }
 
     @Test

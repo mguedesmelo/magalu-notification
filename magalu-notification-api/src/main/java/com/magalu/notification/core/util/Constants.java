@@ -5,7 +5,11 @@ public class Constants {
         // Empty
     }
 
+    public static final String[] VALID_NOTIFICATION_TYPES = new String[] {"sms", "push", "whatsapp", "email"};
+
     public static final String UNABLE_TO_LOCATE = "Unable to locate the %s";
+
+    public static final String INVALID_FIELDS = "Invalid fields";
 
     public static final long TASK_INTERVAL = 60l * 1000l; // 1200000 milliseconds = 20 minutes
 

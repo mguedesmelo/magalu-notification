@@ -33,9 +33,6 @@ public class Notification extends BaseEntity {
     @Column(name = "scheduled_date_time", nullable = false)
     private LocalDateTime scheduledDateTime;
 
-    @Column(name = "sent_date_time")
-    private LocalDateTime sentDateTime;
-
     @Column(name = "message", length = 200, nullable = false)
     private String message;
 

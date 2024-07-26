@@ -12,7 +12,7 @@ public final class StringUtil {
     }
 
     public static String onlyNumbers(String str) {
-        if (!StringUtil.isNullOrEmpty(str)) {
+        if (!StringUtil.isEmpty(str)) {
             return str.replaceAll("[^0123456789]", "");
         } else {
             return "";
@@ -24,10 +24,14 @@ public final class StringUtil {
     }
 
     public static boolean isNumber(String n) {
-        if (StringUtil.isNullOrEmpty(n)) {
+        if (StringUtil.isEmpty(n)) {
             return false;
         }
         return n.trim().matches("\\d+");
+    }
+
+    public static boolean isNotEmpty(String text) {
+        return !StringUtil.isEmpty(text);
     }
 
     /**
@@ -37,7 +41,7 @@ public final class StringUtil {
      * @return boolean Returns <code>true</code> if the text is null or empty,
      *         <code>false</code> otherwise.
      */
-    public static boolean isNullOrEmpty(String text) {
+    public static boolean isEmpty(String text) {
         return (text == null || text.trim().length() == 0 || text.trim().isEmpty());
     }
 
@@ -48,9 +52,9 @@ public final class StringUtil {
      * @return boolean Returns <code>true</code> if some of the texts is null or empty,
      *         <code>false</code> otherwise.
      */
-    public static boolean isNullOrEmpty(String... texts) {
+    public static boolean isEmpty(String... texts) {
         for (String text : texts) {
-            if (StringUtil.isNullOrEmpty(text)) {
+            if (StringUtil.isEmpty(text)) {
                 return true;
             }
         }
@@ -66,7 +70,7 @@ public final class StringUtil {
      *         array, <code>false</code> otherwise.
      */
     public static boolean equalsIgnoreCase(String text, String... texts) {
-        if (StringUtil.isNullOrEmpty(text) || texts == null || texts.length == 0) {
+        if (StringUtil.isEmpty(text) || texts == null || texts.length == 0) {
             return false;
         }
         for (String t : texts) {
@@ -100,7 +104,7 @@ public final class StringUtil {
 
     public static String fillString(String s, int quantity) {
         StringBuilder toReturn = new StringBuilder();
-        if (!isNullOrEmpty(s)) {
+        if (!isEmpty(s)) {
             for (int i = 0; i < quantity; i++) {
                 toReturn.append(s);
             }
@@ -128,7 +132,7 @@ public final class StringUtil {
 
     public static String abbreviate(String s) {
         StringBuilder toReturn = new StringBuilder("");
-        if (!StringUtil.isNullOrEmpty(s)) {
+        if (!StringUtil.isEmpty(s)) {
             String[] wordsArray = s.split(" ");
             if (wordsArray.length > 1) {
                 List<String> words = new ArrayList<>(0);
@@ -165,7 +169,7 @@ public final class StringUtil {
     }
 
     public static boolean contains(String s, String... values) {
-        if (StringUtil.isNullOrEmpty(s)) {
+        if (StringUtil.isEmpty(s)) {
             return false;
         }
         for (String v : values) {
@@ -174,5 +178,9 @@ public final class StringUtil {
             }
         }
         return false;
+    }
+
+    public static boolean doesNotContains(String s, String... values) {
+        return !StringUtil.contains(s, values);
     }
 }

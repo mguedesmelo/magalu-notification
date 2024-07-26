@@ -26,11 +26,11 @@ class NotificationBusinessValidationTest {
                 .scheduledDateTime(LocalDateTime.now())
                 .notificationChannels(List.of(
                         NotificationChannel.builder()
-                                .name("sms")
+                                .type("sms")
                                 .sendTo("81 555-5555")
                                 .build(),
                         NotificationChannel.builder()
-                                .name("push")
+                                .type("push")
                                 .sendTo("81 555-5555")
                                 .build()))
                 .build();
@@ -45,7 +45,7 @@ class NotificationBusinessValidationTest {
                 .scheduledDateTime(LocalDateTime.now())
                 .notificationChannels(List.of(
                         NotificationChannel.builder()
-                                .name("push")
+                                .type("push")
                                 .build()))
                 .build();
 
@@ -59,7 +59,7 @@ class NotificationBusinessValidationTest {
                 .scheduledDateTime(LocalDateTime.now())
                 .notificationChannels(List.of(
                         NotificationChannel.builder()
-                                .name("invalid")
+                                .type("invalid")
                                 .sendTo("81 555-5555")
                                 .build()))
                 .build();
@@ -87,11 +87,11 @@ class NotificationBusinessValidationTest {
                 .message("Message")
                 .notificationChannels(List.of(
                         NotificationChannel.builder()
-                                .name("sms")
+                                .type("sms")
                                 .sendTo("81 555-5555")
                                 .build(),
                         NotificationChannel.builder()
-                                .name("push")
+                                .type("push")
                                 .sendTo("81 555-5555")
                                 .build()))
                 .build();
@@ -116,11 +116,11 @@ class NotificationBusinessValidationTest {
                 .scheduledDateTime(LocalDateTime.now())
                 .notificationChannels(List.of(
                         NotificationChannel.builder()
-                                .name("sms")
+                                .type("sms")
                                 .sendTo("81 555-5555")
                                 .build(),
                         NotificationChannel.builder()
-                                .name("push")
+                                .type("push")
                                 .sendTo("81 555-5555")
                                 .build()))
                 .build();

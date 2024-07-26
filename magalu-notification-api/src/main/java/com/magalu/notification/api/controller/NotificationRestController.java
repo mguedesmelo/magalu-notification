@@ -6,11 +6,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -58,5 +60,16 @@ public class NotificationRestController extends BaseRestController {
     public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
         this.notificationService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @Operation(summary = "Activate/Deactivate a notification channel by notification id, "
+    		+ "pass null in the channel parameter to update all channels")
+    @PatchMapping
+    public ResponseEntity<NotificationResponseDto> activateDeactivate(
+    		@RequestParam(value = "id") Long id, 
+    		@RequestParam(value = "channel", required = false) String channel, 
+    		@RequestParam(value = "active") Boolean active) {
+        return ResponseEntity.status(HttpStatus.OK).body(
+        		this.notificationService.activateDeactivate(id, channel, active));
     }
 }

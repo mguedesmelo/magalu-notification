@@ -30,11 +30,11 @@ class NotificationFactoryTest {
                 .scheduledDateTime(LocalDateTime.now())
                 .notificationChannels(List.of(
                         NotificationChannelDto.builder()
-                                .name("sms")
+                                .type("sms")
                                 .sendTo("81 555-5555")
                                 .build(),
                         NotificationChannelDto.builder()
-                                .name("push")
+                                .type("push")
                                 .sendTo("81 555-5555")
                                 .build()))
                 .build();
@@ -63,11 +63,11 @@ class NotificationFactoryTest {
                 .scheduledDateTime(LocalDateTime.now())
                 .notificationChannels(List.of(
                         NotificationChannelDto.builder()
-                                .name("sms")
+                                .type("sms")
                                 .sendTo("81 555-5555")
                                 .build(),
                         NotificationChannelDto.builder()
-                                .name("whatsapp")
+                                .type("whatsapp")
                                 .sendTo("81 555-5555")
                                 .build()))
                 .build();
@@ -94,8 +94,8 @@ class NotificationFactoryTest {
                 .message("Test message")
                 .scheduledDateTime(LocalDateTime.now())
                 .notificationChannels(List.of(
-                        NotificationChannel.builder().name("sms").sendTo("Test receiver").build(),
-                        NotificationChannel.builder().name("push").sendTo("Test receiver").build()))
+                        NotificationChannel.builder().type("sms").sendTo("Test receiver").build(),
+                        NotificationChannel.builder().type("push").sendTo("Test receiver").build()))
                 .build();
 
         NotificationRequestDto notificationRequest = notificationFactory.createNotificationRequest(notification);

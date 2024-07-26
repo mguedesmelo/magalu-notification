@@ -35,6 +35,23 @@ public class BusinessException extends RuntimeException {
         }
     }
 
+    public static void throwInvalidIf(String errorMessage, boolean condition) {
+    	doThrowErrorTypeIf(condition, ErrorType.INVALID, errorMessage);
+    }
+
+    public static void throwMandatoryIf(String errorMessage, boolean condition) {
+    	doThrowErrorTypeIf(condition, ErrorType.MANDATORY, errorMessage);
+    }
+
+	private static void doThrowErrorTypeIf(boolean condition, ErrorType errorType, String errorMessage) {
+		if (condition) {
+			throw new BusinessException(Set.of(ErrorMessage.builder()
+            		.errorType(errorType)
+            		.message(errorMessage)
+            		.build()));
+		}
+	}
+
     public static void throwIfHasErrorMessages(Set<ErrorMessage> errorMessages) {
         if (!errorMessages.isEmpty()) {
             throw new BusinessException(errorMessages);
