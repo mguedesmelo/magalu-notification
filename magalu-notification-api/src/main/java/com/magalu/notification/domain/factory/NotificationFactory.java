@@ -25,9 +25,9 @@ public class NotificationFactory {
                 .scheduledDateTime(notificationRequest.getScheduledDateTime())
                 .notificationChannels(notificationRequest.getNotificationChannels()
                         .stream()
-                        .map(name -> NotificationChannel.builder()
-                                .name(name.getName())
-                                .sendTo(name.getSendTo())
+                        .map(notificationChannel -> NotificationChannel.builder()
+                                .name(notificationChannel.getName())
+                                .sendTo(notificationChannel.getSendTo())
                                 .build())
                         .collect(Collectors.toList()))
                 .build();
