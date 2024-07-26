@@ -3,6 +3,12 @@ Desafio Backend da Magalu, os detalhes se encontram no arquivo [PROBLEM.md]( htt
 
 <div style="display: inline_block"><br>
   <img align="center" alt="mguedesmelo-java" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg">
+  <img align="center" alt="mguedesmelo-springboot" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/spring/spring-original-wordmark.svg">
+  <img align="center" alt="mguedesmelo-tomcat" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/tomcat/tomcat-original-wordmark.svg">
+
+  <img align="center" alt="mguedesmelo-hibernate" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/hibernate/hibernate-original-wordmark.svg">
+  <img align="center" alt="mguedesmelo-swagger" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/swagger/swagger-original.svg">
+  <img align="center" alt="mguedesmelo-eclipse" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/eclipse/eclipse-plain.svg">
 </div>
 
 ## 💻 Tecnologias
@@ -14,6 +20,7 @@ Desafio Backend da Magalu, os detalhes se encontram no arquivo [PROBLEM.md]( htt
 * [Swagger](https://swagger.io/) - Gerenciador de Documentação e Testes Funcionais
 * [H2 Database](http://www.h2database.com) - SGBD
 * [Spring Tools 4 for Eclipse](https://spring.io/tools) - IDE
+
 
 ## ⌨️ Instalação
 1. Clone o repositório para baixar as pastas contendo o código fonte do projeto Java.
