@@ -16,50 +16,50 @@ import com.magalu.notification.service.NotificationService;
 @SpringBootApplication
 @EnableScheduling
 public class MagaluNotificationApiApplication implements CommandLineRunner {
-	@Autowired
-	private NotificationService notificationService;
+    @Autowired
+    private NotificationService notificationService;
 
-	public static void main(String[] args) {
-		SpringApplication.run(MagaluNotificationApiApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(MagaluNotificationApiApplication.class, args);
+    }
 
-	@Override
-	public void run(String... args) throws Exception {
-		notificationService.save(
-				NotificationRequestDto.builder()
-						.id(null)
-						.message("System test")
-						.scheduledDateTime(LocalDateTime.now().plusMinutes(3))
-						.notificationChannels(List.of(
-								NotificationChannelDto.builder()
-										.name("sms")
-										.sendTo("81 555-5555")
-										.build(),
-								NotificationChannelDto.builder()
-										.name("push")
-										.sendTo("81 555-5555")
-										.build()))
-						.build());
+    @Override
+    public void run(String... args) throws Exception {
+        notificationService.save(
+                NotificationRequestDto.builder()
+                        .id(null)
+                        .message("System test")
+                        .scheduledDateTime(LocalDateTime.now().plusMinutes(3))
+                        .notificationChannels(List.of(
+                                NotificationChannelDto.builder()
+                                        .name("sms")
+                                        .sendTo("81 555-5555")
+                                        .build(),
+                                NotificationChannelDto.builder()
+                                        .name("push")
+                                        .sendTo("81 555-5555")
+                                        .build()))
+                        .build());
 
-		notificationService.save(
-				NotificationRequestDto.builder()
-						.id(null)
-						.message("Another system test")
-						.scheduledDateTime(LocalDateTime.now().plusMinutes(5))
-						.notificationChannels(List.of(
-								NotificationChannelDto.builder()
-										.name("sms")
-										.sendTo("81 555-5555")
-										.build(),
-								NotificationChannelDto.builder()
-										.name("push")
-										.sendTo("81 555-5555")
-										.build(),
-								NotificationChannelDto.builder()
-										.name("whatsapp")
-										.sendTo("81 555-5555")
-										.build()
-						))
-				.build());
-	}
+        notificationService.save(
+                NotificationRequestDto.builder()
+                        .id(null)
+                        .message("Another system test")
+                        .scheduledDateTime(LocalDateTime.now().plusMinutes(5))
+                        .notificationChannels(List.of(
+                                NotificationChannelDto.builder()
+                                        .name("sms")
+                                        .sendTo("81 555-5555")
+                                        .build(),
+                                NotificationChannelDto.builder()
+                                        .name("push")
+                                        .sendTo("81 555-5555")
+                                        .build(),
+                                NotificationChannelDto.builder()
+                                        .name("whatsapp")
+                                        .sendTo("81 555-5555")
+                                        .build()
+                        ))
+                .build());
+    }
 }

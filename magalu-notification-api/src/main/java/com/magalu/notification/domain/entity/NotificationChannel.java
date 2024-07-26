@@ -21,11 +21,11 @@ import lombok.experimental.SuperBuilder;
 @Table(name = "tb_notification_channel")
 public class NotificationChannel extends BaseEntity {
     @Serial
-	private static final long serialVersionUID = -690452325859131523L;
+    private static final long serialVersionUID = -690452325859131523L;
 
     @Column(name = "name", length = 10, nullable = false)
     @Pattern(regexp = "sms|push|whatsapp|email", message = "The notification channel must be one of the following: SMS, Push, WhatsApp or Email")
-	private String name;
+    private String name;
 
     @Column(name = "send_to", length = 250, nullable = false)
     private String sendTo;

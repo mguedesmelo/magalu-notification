@@ -9,8 +9,8 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class ResponseMessage implements Serializable {
-	@Serial
-	private static final long serialVersionUID = -1968779282906288944L;
-	private int errorCode;
+    @Serial
+    private static final long serialVersionUID = -1968779282906288944L;
+    private int errorCode;
     private String message;
 }

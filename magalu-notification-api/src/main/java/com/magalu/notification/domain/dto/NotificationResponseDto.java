@@ -21,17 +21,17 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @SuperBuilder
 public class NotificationResponseDto extends BaseNotificationDto {
-	@Serial
-	private static final long serialVersionUID = 4200310800305934549L;
+    @Serial
+    private static final long serialVersionUID = 4200310800305934549L;
 
-	@JsonIgnore
-	private LocalDateTime creationDate;
+    @JsonIgnore
+    private LocalDateTime creationDate;
 
-	@JsonProperty("creationDate")
-	public String getCreationDateString() {
-		if (ObjectUtil.isEmpty(this.creationDate)) {
-			return "";
-		}
-		return this.creationDate.format(DateTimeFormatter.ofPattern(Constants.PATTERN_DD_MM_YYYY_HH_MM));
-	}
+    @JsonProperty("creationDate")
+    public String getCreationDateString() {
+        if (ObjectUtil.isEmpty(this.creationDate)) {
+            return "";
+        }
+        return this.creationDate.format(DateTimeFormatter.ofPattern(Constants.PATTERN_DD_MM_YYYY_HH_MM));
+    }
 }

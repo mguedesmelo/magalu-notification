@@ -33,7 +33,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestControllerAdvice
 public class MagaluNotificationExceptionHandler {
     private ResponseEntity<ResponseMessage> createErrorsResponseEntity(String errorMessage, 
-    		HttpStatus httpStatus) {
+            HttpStatus httpStatus) {
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.CONTENT_TYPE, "application/problem+json");
         log.error(errorMessage);
@@ -44,7 +44,7 @@ public class MagaluNotificationExceptionHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(RecordNotFoundException.class)
     public ResponseEntity<ResponseMessage> handleRecordNotFoundException(RecordNotFoundException e) {
-    	return createErrorsResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
+        return createErrorsResponseEntity(e.getMessage(), HttpStatus.NOT_FOUND);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -56,46 +56,46 @@ public class MagaluNotificationExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(BusinessException.class)
     public ResponseEntity<BusinessExceptionResult> handleBusinessException(BusinessException e) {
-    	return new ResponseEntity<>(new BusinessExceptionResult(e), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new BusinessExceptionResult(e), HttpStatus.BAD_REQUEST);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(UsernameNotFoundException.class)
     public ResponseEntity<ResponseMessage> handleUsernameNotFoundException(UsernameNotFoundException e) {
-    	return createErrorsResponseEntity("Invalid login or password", HttpStatus.BAD_REQUEST);
+        return createErrorsResponseEntity("Invalid login or password", HttpStatus.BAD_REQUEST);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler({MethodArgumentNotValidException.class})
     public ResponseEntity<Map<String, String>> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
-    	Map<String, String> errors = new HashMap<>(0);
-    	errors.put("Description", "Invalid fields");
-    	errors.putAll(ex.getBindingResult().getAllErrors().stream()
+        Map<String, String> errors = new HashMap<>(0);
+        errors.put("Description", "Invalid fields");
+        errors.putAll(ex.getBindingResult().getAllErrors().stream()
                 .filter(error -> error instanceof FieldError)
                 .map(error -> (FieldError) error)
                 .collect(Collectors.toMap(
                     FieldError::getField,
                     FieldError::getDefaultMessage
                 )));
-    	return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<ResponseMessage> handleConstraintViolationException(ConstraintViolationException e) {
-    	return createErrorsResponseEntity("Invalid fields", HttpStatus.BAD_REQUEST);
+        return createErrorsResponseEntity("Invalid fields", HttpStatus.BAD_REQUEST);
     }
 
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ExceptionHandler(AccessDeniedException.class)
     public ResponseEntity<ResponseMessage> accesDeniedException(AccessDeniedException ex) {
-    	return createErrorsResponseEntity("Insufficient privileges", HttpStatus.UNAUTHORIZED);
+        return createErrorsResponseEntity("Insufficient privileges", HttpStatus.UNAUTHORIZED);
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(DataAccessException.class)
     public ResponseEntity<ResponseMessage> dataAccessException(DataAccessException ex) {
-    	return createErrorsResponseEntity("Failed to execute database statement", HttpStatus.INTERNAL_SERVER_ERROR);
+        return createErrorsResponseEntity("Failed to execute database statement", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -107,6 +107,6 @@ public class MagaluNotificationExceptionHandler {
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<ResponseMessage> handleBadCredentialsException(BadCredentialsException e) {
-    	return createErrorsResponseEntity("Invalid login os password", HttpStatus.UNAUTHORIZED);
+        return createErrorsResponseEntity("Invalid login os password", HttpStatus.UNAUTHORIZED);
     }
 }

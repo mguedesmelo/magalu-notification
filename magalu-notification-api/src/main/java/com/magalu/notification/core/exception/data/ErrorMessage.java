@@ -8,6 +8,6 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @SuperBuilder
 public class ErrorMessage {
-	private ErrorType errorType;
-	private String message;
+    private ErrorType errorType;
+    private String message;
 }

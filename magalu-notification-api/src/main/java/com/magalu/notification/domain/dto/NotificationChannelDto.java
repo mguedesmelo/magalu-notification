@@ -15,10 +15,10 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @SuperBuilder
 public class NotificationChannelDto implements Serializable {
-	@Serial
-	private static final long serialVersionUID = -1378057872778470818L;
+    @Serial
+    private static final long serialVersionUID = -1378057872778470818L;
 
-	private String name;
+    private String name;
 
     private String sendTo;
 }

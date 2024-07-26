@@ -25,19 +25,19 @@ class NotificationFactoryTest {
     void createNotificationReturnsNotificationForValidRequest() {
         NotificationFactory notificationFactory = new NotificationFactory();
         NotificationRequestDto notificationRequest = NotificationRequestDto.builder()
-        		.id(1L)
-        		.message("Test message")
-        		.scheduledDateTime(LocalDateTime.now())
-        		.notificationChannels(List.of(
-						NotificationChannelDto.builder()
-								.name("sms")
-								.sendTo("81 555-5555")
-								.build(),
-						NotificationChannelDto.builder()
-								.name("push")
-								.sendTo("81 555-5555")
-								.build()))
-        		.build();
+                .id(1L)
+                .message("Test message")
+                .scheduledDateTime(LocalDateTime.now())
+                .notificationChannels(List.of(
+                        NotificationChannelDto.builder()
+                                .name("sms")
+                                .sendTo("81 555-5555")
+                                .build(),
+                        NotificationChannelDto.builder()
+                                .name("push")
+                                .sendTo("81 555-5555")
+                                .build()))
+                .build();
 
         Notification notification = notificationFactory.createNotification(notificationRequest);
 
@@ -59,18 +59,18 @@ class NotificationFactoryTest {
         NotificationFactory notificationFactory = new NotificationFactory();
         Notification notification = new Notification();
         NotificationRequestDto notificationRequest = NotificationRequestDto.builder()
-        		.message("Updated message")
-        		.scheduledDateTime(LocalDateTime.now())
-        		.notificationChannels(List.of(
-						NotificationChannelDto.builder()
-								.name("sms")
-								.sendTo("81 555-5555")
-								.build(),
-						NotificationChannelDto.builder()
-								.name("whatsapp")
-								.sendTo("81 555-5555")
-								.build()))
-        		.build();
+                .message("Updated message")
+                .scheduledDateTime(LocalDateTime.now())
+                .notificationChannels(List.of(
+                        NotificationChannelDto.builder()
+                                .name("sms")
+                                .sendTo("81 555-5555")
+                                .build(),
+                        NotificationChannelDto.builder()
+                                .name("whatsapp")
+                                .sendTo("81 555-5555")
+                                .build()))
+                .build();
 
         Notification updatedNotification = notificationFactory.updateNotification(notification, notificationRequest);
 
@@ -90,13 +90,13 @@ class NotificationFactoryTest {
     void createNotificationRequestReturnsNotificationResponseForValidNotification() {
         NotificationFactory notificationFactory = new NotificationFactory();
         Notification notification = Notification.builder()
-				.id(1L)
-				.message("Test message")
-				.scheduledDateTime(LocalDateTime.now())
-				.notificationChannels(List.of(
-						NotificationChannel.builder().name("sms").sendTo("Test receiver").build(),
-						NotificationChannel.builder().name("push").sendTo("Test receiver").build()))
-				.build();
+                .id(1L)
+                .message("Test message")
+                .scheduledDateTime(LocalDateTime.now())
+                .notificationChannels(List.of(
+                        NotificationChannel.builder().name("sms").sendTo("Test receiver").build(),
+                        NotificationChannel.builder().name("push").sendTo("Test receiver").build()))
+                .build();
 
         NotificationRequestDto notificationRequest = notificationFactory.createNotificationRequest(notification);
 

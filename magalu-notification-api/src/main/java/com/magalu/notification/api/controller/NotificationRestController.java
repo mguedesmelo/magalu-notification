@@ -26,37 +26,37 @@ import lombok.AllArgsConstructor;
 @RestController
 @RequestMapping("/api/notification")
 public class NotificationRestController extends BaseRestController {
-	private NotificationService notificationService;
+    private NotificationService notificationService;
 
-	@Operation(summary = "Get notification list")
-	@GetMapping
-	public ResponseEntity<List<NotificationResponseDto>> findAll() {
-		return ResponseEntity.status(HttpStatus.OK).body(this.notificationService.findAll());
-	}
+    @Operation(summary = "Get notification list")
+    @GetMapping
+    public ResponseEntity<List<NotificationResponseDto>> findAll() {
+        return ResponseEntity.status(HttpStatus.OK).body(this.notificationService.findAll());
+    }
 
-	@Operation(summary = "Get a notification by its id")
-	@GetMapping(value = "/{id}")
-	public ResponseEntity<NotificationResponseDto> findById(@PathVariable("id") Long id) {
-		return ResponseEntity.status(HttpStatus.OK).body(this.notificationService.findById(id));
-	}
+    @Operation(summary = "Get a notification by its id")
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<NotificationResponseDto> findById(@PathVariable("id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(this.notificationService.findById(id));
+    }
 
-	@Operation(summary = "Create a new notification")
-	@PostMapping
-	public ResponseEntity<NotificationResponseDto> save(@Valid @RequestBody NotificationRequestDto notificationRequest) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(this.notificationService.save(notificationRequest));
-	}
+    @Operation(summary = "Create a new notification")
+    @PostMapping
+    public ResponseEntity<NotificationResponseDto> save(@Valid @RequestBody NotificationRequestDto notificationRequest) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(this.notificationService.save(notificationRequest));
+    }
 
-	@Operation(summary = "Update existing notification by its id")
-	@PutMapping
-	public ResponseEntity<NotificationResponseDto> update(@Valid @RequestBody NotificationRequestDto notificationRequest) {
-		return ResponseEntity.status(HttpStatus.OK).body(this.notificationService.update(notificationRequest));
-	}
+    @Operation(summary = "Update existing notification by its id")
+    @PutMapping
+    public ResponseEntity<NotificationResponseDto> update(@Valid @RequestBody NotificationRequestDto notificationRequest) {
+        return ResponseEntity.status(HttpStatus.OK).body(this.notificationService.update(notificationRequest));
+    }
 
-	@Operation(summary = "Delete existing notification by its id")
-	@DeleteMapping("/{id}")
-	@ResponseStatus(code = HttpStatus.NO_CONTENT)
-	public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
-		this.notificationService.delete(id);
-		return ResponseEntity.noContent().build();
-	}
+    @Operation(summary = "Delete existing notification by its id")
+    @DeleteMapping("/{id}")
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
+        this.notificationService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

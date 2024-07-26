@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class SenderFactoryTest {
-	private SenderFactory senderFactory;
+    private SenderFactory senderFactory;
 
     @BeforeEach
     public void setup() {

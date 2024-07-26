@@ -13,6 +13,5 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 public class NotificationRequestDto extends BaseNotificationDto {
     @Serial
-	private static final long serialVersionUID = -5647260749974794842L;
-
+    private static final long serialVersionUID = -5647260749974794842L;
 }

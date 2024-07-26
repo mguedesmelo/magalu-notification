@@ -14,14 +14,14 @@ import lombok.AllArgsConstructor;
 @Component
 @AllArgsConstructor
 public class SendScheduledNotificationsTask extends BaseTask {
-	@Serial
-	private static final long serialVersionUID = -2248033744236928140L;
+    @Serial
+    private static final long serialVersionUID = -2248033744236928140L;
 
-	@Autowired
-	private NotificationService notificationService;
+    @Autowired
+    private NotificationService notificationService;
 
     @Scheduled(fixedRate = Constants.TASK_INTERVAL)
-	public void send() {
-		this.notificationService.sendNotifications();
-	}
+    public void send() {
+        this.notificationService.sendNotifications();
+    }
 }

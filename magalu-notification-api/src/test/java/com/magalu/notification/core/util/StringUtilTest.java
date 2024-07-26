@@ -49,7 +49,7 @@ class StringUtilTest {
 
     @Test
     void isNullOrEmptyReturnsTrueForNull() {
-    	String s = null;
+        String s = null;
         assertTrue(StringUtil.isNullOrEmpty(s));
     }
 
@@ -75,7 +75,7 @@ class StringUtilTest {
 
     @Test
     void randomString() {
-    	assertNotNull(StringUtil.randomString());
+        assertNotNull(StringUtil.randomString());
     }
 
     @Test

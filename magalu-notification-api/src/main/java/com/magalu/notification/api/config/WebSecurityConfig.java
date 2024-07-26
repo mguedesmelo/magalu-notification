@@ -11,19 +11,19 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
-	@Bean
-	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    @Bean
+    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
-				.cors(withDefaults())
-				.authorizeHttpRequests(auth -> auth
-						.anyRequest()
-						.permitAll()
-						)
-				.csrf(csrf -> csrf.disable())
-				.headers(headers -> headers
-	            		.contentTypeOptions(withDefaults())
-	            		.frameOptions(withDefaults())
-	            		.disable())
-				.build();
-	}
+                .cors(withDefaults())
+                .authorizeHttpRequests(auth -> auth
+                        .anyRequest()
+                        .permitAll()
+                        )
+                .csrf(csrf -> csrf.disable())
+                .headers(headers -> headers
+                        .contentTypeOptions(withDefaults())
+                        .frameOptions(withDefaults())
+                        .disable())
+                .build();
+    }
 }

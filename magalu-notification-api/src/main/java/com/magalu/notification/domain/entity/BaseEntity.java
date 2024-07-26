@@ -21,28 +21,28 @@ import lombok.experimental.SuperBuilder;
 @MappedSuperclass
 @SuperBuilder
 public abstract class BaseEntity implements Serializable {
-	@Serial
-	private static final long serialVersionUID = -7079556927665964169L;
+    @Serial
+    private static final long serialVersionUID = -7079556927665964169L;
 
-	@Id
-	@Column(name = "id", unique = true, nullable = false)
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+    @Id
+    @Column(name = "id", unique = true, nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-	@Column(name = "creation_date")
-	private LocalDateTime creationDate;
+    @Column(name = "creation_date")
+    private LocalDateTime creationDate;
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(this.id);
-	}
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.id);
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (!(obj instanceof BaseEntity)) {
-			return false;
-		}
-		BaseEntity other = (BaseEntity) obj;
-		return Objects.equals(this.id, other.id);
-	}
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof BaseEntity)) {
+            return false;
+        }
+        BaseEntity other = (BaseEntity) obj;
+        return Objects.equals(this.id, other.id);
+    }
 }

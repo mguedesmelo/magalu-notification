@@ -14,7 +14,7 @@ import com.magalu.notification.domain.entity.Notification;
 import com.magalu.notification.domain.entity.NotificationChannel;
 
 class NotificationBusinessValidationTest {
-	private NotificationBusinessValidation validation;
+    private NotificationBusinessValidation validation;
 
     @BeforeEach
     public void setup() {
@@ -22,18 +22,18 @@ class NotificationBusinessValidationTest {
     }
     @Test
     void checkBeforeSaveThrowsExceptionForEmptyMessage() {
-		Notification notification = Notification.builder()
-				.scheduledDateTime(LocalDateTime.now())
-				.notificationChannels(List.of(
-						NotificationChannel.builder()
-								.name("sms")
-								.sendTo("81 555-5555")
-								.build(),
-						NotificationChannel.builder()
-								.name("push")
-								.sendTo("81 555-5555")
-								.build()))
-				.build();
+        Notification notification = Notification.builder()
+                .scheduledDateTime(LocalDateTime.now())
+                .notificationChannels(List.of(
+                        NotificationChannel.builder()
+                                .name("sms")
+                                .sendTo("81 555-5555")
+                                .build(),
+                        NotificationChannel.builder()
+                                .name("push")
+                                .sendTo("81 555-5555")
+                                .build()))
+                .build();
 
         assertThrows(BusinessException.class, () -> validation.checkBeforeSave(notification));
     }
@@ -41,89 +41,89 @@ class NotificationBusinessValidationTest {
     @Test
     void checkBeforeSaveThrowsExceptionForEmptySendTo() {
         Notification notification = Notification.builder()
-        		.message("Message")
-        		.scheduledDateTime(LocalDateTime.now())
-        		.notificationChannels(List.of(
-						NotificationChannel.builder()
-								.name("push")
-								.build()))
-        		.build();
+                .message("Message")
+                .scheduledDateTime(LocalDateTime.now())
+                .notificationChannels(List.of(
+                        NotificationChannel.builder()
+                                .name("push")
+                                .build()))
+                .build();
 
         assertThrows(BusinessException.class, () -> validation.checkBeforeSave(notification));
     }
 
     @Test
     void checkBeforeSaveThrowsExceptionForInvalidChannel() {
-    	Notification notification = Notification.builder()
-        		.message("Message")
-        		.scheduledDateTime(LocalDateTime.now())
-        		.notificationChannels(List.of(
-						NotificationChannel.builder()
-								.name("invalid")
-								.sendTo("81 555-5555")
-								.build()))
-        		.build();
+        Notification notification = Notification.builder()
+                .message("Message")
+                .scheduledDateTime(LocalDateTime.now())
+                .notificationChannels(List.of(
+                        NotificationChannel.builder()
+                                .name("invalid")
+                                .sendTo("81 555-5555")
+                                .build()))
+                .build();
 
         assertThrows(BusinessException.class, () -> validation.checkBeforeSave(notification));
     }
 
     @Test
     void checkBeforeSaveThrowsExceptionForEmptyChannelName() {
-    	Notification notification = Notification.builder()
-        		.message("Message")
-        		.scheduledDateTime(LocalDateTime.now())
-        		.notificationChannels(List.of(
-						NotificationChannel.builder()
-								.sendTo("81 555-5555")
-								.build()))
-        		.build();
+        Notification notification = Notification.builder()
+                .message("Message")
+                .scheduledDateTime(LocalDateTime.now())
+                .notificationChannels(List.of(
+                        NotificationChannel.builder()
+                                .sendTo("81 555-5555")
+                                .build()))
+                .build();
 
         assertThrows(BusinessException.class, () -> validation.checkBeforeSave(notification));
     }
 
     @Test
     void checkBeforeSaveThrowsExceptionForEmptyScheduledDateTime() {
-    	Notification notification = Notification.builder()
-				.message("Message")
-				.notificationChannels(List.of(
-						NotificationChannel.builder()
-								.name("sms")
-								.sendTo("81 555-5555")
-								.build(),
-						NotificationChannel.builder()
-								.name("push")
-								.sendTo("81 555-5555")
-								.build()))
-				.build();
+        Notification notification = Notification.builder()
+                .message("Message")
+                .notificationChannels(List.of(
+                        NotificationChannel.builder()
+                                .name("sms")
+                                .sendTo("81 555-5555")
+                                .build(),
+                        NotificationChannel.builder()
+                                .name("push")
+                                .sendTo("81 555-5555")
+                                .build()))
+                .build();
 
         assertThrows(BusinessException.class, () -> validation.checkBeforeSave(notification));
     }
 
     @Test
     void checkBeforeSaveThrowsExceptionForEmptyNotificationTypes() {
-    	Notification notification = Notification.builder()
-				.message("Message")
-				.scheduledDateTime(LocalDateTime.now())
-				.build();
+        Notification notification = Notification.builder()
+                .message("Message")
+                .scheduledDateTime(LocalDateTime.now())
+                .build();
 
         assertThrows(BusinessException.class, () -> validation.checkBeforeSave(notification));
     }
 
     @Test
     void checkBeforeSaveDoesNotThrowExceptionForValidRequest() {
-    	Notification notification = Notification.builder()
-				.message("Message")
-				.scheduledDateTime(LocalDateTime.now())
-				.notificationChannels(List.of(
-						NotificationChannel.builder()
-								.name("sms")
-								.sendTo("81 555-5555")
-								.build(),
-						NotificationChannel.builder()
-								.name("push")
-								.sendTo("81 555-5555")
-								.build()))
-				.build();
+        Notification notification = Notification.builder()
+                .message("Message")
+                .scheduledDateTime(LocalDateTime.now())
+                .notificationChannels(List.of(
+                        NotificationChannel.builder()
+                                .name("sms")
+                                .sendTo("81 555-5555")
+                                .build(),
+                        NotificationChannel.builder()
+                                .name("push")
+                                .sendTo("81 555-5555")
+                                .build()))
+                .build();
 
         assertDoesNotThrow(() -> validation.checkBeforeSave(notification));
     }

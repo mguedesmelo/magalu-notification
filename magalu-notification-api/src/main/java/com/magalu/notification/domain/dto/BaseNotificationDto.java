@@ -24,21 +24,21 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 @SuperBuilder
 public abstract class BaseNotificationDto implements Serializable {
-	@Serial
-	private static final long serialVersionUID = 3601782508509320166L;
+    @Serial
+    private static final long serialVersionUID = 3601782508509320166L;
 
-	private Long id;
+    private Long id;
 
-	@JsonFormat(pattern = Constants.PATTERN_DD_MM_YYYY_HH_MM)
-	private LocalDateTime scheduledDateTime;
+    @JsonFormat(pattern = Constants.PATTERN_DD_MM_YYYY_HH_MM)
+    private LocalDateTime scheduledDateTime;
 
-	private String message;
+    private String message;
 
-	@Builder.Default
-	private List<NotificationChannelDto> notificationChannels = new ArrayList<>(0);
+    @Builder.Default
+    private List<NotificationChannelDto> notificationChannels = new ArrayList<>(0);
 
-	@JsonIgnore
-	public Type getType() {
+    @JsonIgnore
+    public Type getType() {
         return getClass().getGenericSuperclass();
     }
 }

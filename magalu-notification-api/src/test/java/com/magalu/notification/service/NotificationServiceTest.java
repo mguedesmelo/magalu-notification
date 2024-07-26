@@ -43,10 +43,10 @@ class NotificationServiceTest {
     private NotificationFactory notificationFactory;
 
     @Mock
-	private NotificationBusinessValidation notificationBusinessValidation;
+    private NotificationBusinessValidation notificationBusinessValidation;
 
     @Mock
-	private SenderFactory senderFactory;
+    private SenderFactory senderFactory;
 
     @BeforeEach
     public void setup() {
@@ -67,7 +67,7 @@ class NotificationServiceTest {
 
     @Test
     void findByIdReturnsNotification() {
-    	NotificationResponseDto notificationResponse = new NotificationResponseDto();
+        NotificationResponseDto notificationResponse = new NotificationResponseDto();
         when(notificationRepository.findById(anyLong())).thenReturn(Optional.of(new Notification()));
         when(notificationFactory.createNotificationResponse(any(Notification.class))).thenReturn(notificationResponse);
 
@@ -85,12 +85,12 @@ class NotificationServiceTest {
 
     @Test
     void saveCreatesAndSavesNotification() {
-    	NotificationRequestDto notificationRequest = new NotificationRequestDto();
+        NotificationRequestDto notificationRequest = new NotificationRequestDto();
         Notification notification = new Notification();
         when(notificationFactory.createNotification(any(NotificationRequestDto.class))).thenReturn(notification);
         when(notificationRepository.save(any(Notification.class))).thenReturn(notification);
         when(notificationFactory.createNotificationResponse(any(Notification.class)))
-        		.thenReturn(new NotificationResponseDto());
+                .thenReturn(new NotificationResponseDto());
 
         NotificationResponseDto notificationResponse = notificationService.save(notificationRequest);
 
@@ -99,13 +99,13 @@ class NotificationServiceTest {
 
     @Test
     void updateUpdatesAndSavesNotification() {
-    	NotificationRequestDto notificationRequest = new NotificationRequestDto();
+        NotificationRequestDto notificationRequest = new NotificationRequestDto();
         Notification notification = new Notification();
         when(notificationRepository.findById(any())).thenReturn(Optional.of(notification));
         when(notificationFactory.updateNotification(any(Notification.class), any(NotificationRequestDto.class))).thenReturn(notification);
         when(notificationRepository.save(any(Notification.class))).thenReturn(notification);
         when(notificationFactory.createNotificationResponse(any(Notification.class)))
-        		.thenReturn(new NotificationResponseDto());
+                .thenReturn(new NotificationResponseDto());
 
         NotificationResponseDto notificationResponse = notificationService.update(notificationRequest);
 
@@ -142,13 +142,13 @@ class NotificationServiceTest {
         Notification notification = new Notification();
         notification.setScheduledDateTime(LocalDateTime.now().minusHours(1));
         notification.setNotificationChannels(List.of(
-        		NotificationChannel.builder().name("sms").build()
-        		));
-		when(notificationRepository
-				.findByScheduledDateTimeBeforeAndSentDateTimeIsNull(any(LocalDateTime.class)))
-				.thenReturn(List.of(notification));
-		when(senderFactory.createSender(any())).thenReturn(new SmsSender());
-		when(notificationRepository.save(any(Notification.class))).thenReturn(notification);
+                NotificationChannel.builder().name("sms").build()
+                ));
+        when(notificationRepository
+                .findByScheduledDateTimeBeforeAndSentDateTimeIsNull(any(LocalDateTime.class)))
+                .thenReturn(List.of(notification));
+        when(senderFactory.createSender(any())).thenReturn(new SmsSender());
+        when(notificationRepository.save(any(Notification.class))).thenReturn(notification);
 
         notificationService.sendNotifications();
 

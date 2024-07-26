@@ -9,10 +9,10 @@ import com.magalu.notification.core.exception.data.ErrorMessage;
 import com.magalu.notification.core.exception.data.ErrorType;
 
 public class BusinessException extends RuntimeException {
-	@Serial
-	private static final long serialVersionUID = -7006992541930435245L;
+    @Serial
+    private static final long serialVersionUID = -7006992541930435245L;
 
-	private final transient Set<ErrorMessage> errorMessages = new HashSet<>(0);
+    private final transient Set<ErrorMessage> errorMessages = new HashSet<>(0);
 
     public Set<String> getErrorMessagesByType(ErrorType errorType) {
         return errorMessages.stream()
@@ -21,9 +21,9 @@ public class BusinessException extends RuntimeException {
                 .collect(Collectors.toSet());
     }
 
-	public BusinessException(Set<ErrorMessage> errorMessages) {
-		this.errorMessages.addAll(errorMessages);
-	}
+    public BusinessException(Set<ErrorMessage> errorMessages) {
+        this.errorMessages.addAll(errorMessages);
+    }
 
     public static BusinessException throwMe(ErrorMessage message) {
         return new BusinessException(Set.of(message));
@@ -42,10 +42,10 @@ public class BusinessException extends RuntimeException {
     }
 
     public Set<String> getErrorMessagesInvalidFields() {
-    	return this.getErrorMessagesByType(ErrorType.INVALID);
+        return this.getErrorMessagesByType(ErrorType.INVALID);
     }
 
     public Set<String> getErrorMessagesMandatoryFields() {
-    	return this.getErrorMessagesByType(ErrorType.MANDATORY);
+        return this.getErrorMessagesByType(ErrorType.MANDATORY);
     }
 }
