@@ -36,10 +36,10 @@ public class NotificationRestController extends BaseRestController {
         return ResponseEntity.status(HttpStatus.OK).body(this.notificationService.findAll());
     }
 
-    @Operation(summary = "Get pending notification list")
-    @GetMapping("/pending")
-    public ResponseEntity<List<NotificationResponseDto>> findPendingNotifications() {
-        return ResponseEntity.status(HttpStatus.OK).body(this.notificationService.findPendingNotifications());
+    @Operation(summary = "Get scheduled notification list")
+    @GetMapping("/scheduled")
+    public ResponseEntity<List<NotificationResponseDto>> findAllScheduledNotifications() {
+        return ResponseEntity.status(HttpStatus.OK).body(this.notificationService.findAllScheduledNotifications());
     }
 
     @Operation(summary = "Get a notification by its id")

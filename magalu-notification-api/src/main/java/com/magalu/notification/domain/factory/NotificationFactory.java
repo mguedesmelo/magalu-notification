@@ -26,6 +26,7 @@ public class NotificationFactory {
                 .notificationChannels(notificationRequest.getNotificationChannels()
                         .stream()
                         .map(notificationChannel -> NotificationChannel.builder()
+                        		.creationDate(LocalDateTime.now())
                                 .type(notificationChannel.getType())
                                 .sendTo(notificationChannel.getSendTo())
                                 .sentDateTime(null)

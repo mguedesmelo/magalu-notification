@@ -80,8 +80,8 @@ public class NotificationService extends BaseService {
 		}).orElseThrow(() -> new RecordNotFoundException("notification"));
     }
 
-    public List<NotificationResponseDto> findPendingNotifications() {
-        return notificationRepository.findPendingNotifications(LocalDateTime.now())
+    public List<NotificationResponseDto> findAllScheduledNotifications() {
+        return notificationRepository.findAllScheduledNotifications(LocalDateTime.now())
                 .stream()
                 .map(notificationFactory::createNotificationResponse)
                 .toList();

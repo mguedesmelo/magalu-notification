@@ -29,7 +29,7 @@ public class MagaluNotificationApiApplication implements CommandLineRunner {
                 NotificationRequestDto.builder()
                         .id(null)
                         .message("System test")
-                        .scheduledDateTime(LocalDateTime.now().plusMinutes(3))
+                        .scheduledDateTime(LocalDateTime.now().plusMinutes(1))
                         .notificationChannels(List.of(
                                 NotificationChannelDto.builder()
                                         .type("sms")
@@ -45,7 +45,7 @@ public class MagaluNotificationApiApplication implements CommandLineRunner {
                 NotificationRequestDto.builder()
                         .id(null)
                         .message("Another system test")
-                        .scheduledDateTime(LocalDateTime.now().plusMinutes(5))
+                        .scheduledDateTime(LocalDateTime.now().plusMinutes(1))
                         .notificationChannels(List.of(
                                 NotificationChannelDto.builder()
                                         .type("sms")
@@ -61,5 +61,22 @@ public class MagaluNotificationApiApplication implements CommandLineRunner {
                                         .build()
                         ))
                 .build());
+
+		notificationService.save(
+				NotificationRequestDto.builder()
+						.id(null)
+						.message("Pending notification")
+						.scheduledDateTime(LocalDateTime.now().plusMinutes(1))
+						.notificationChannels(List.of(
+								NotificationChannelDto.builder()
+										.type("sms")
+										.sendTo("81 666-6666")
+										.build(),
+								NotificationChannelDto.builder()
+										.type("push")
+										.sendTo("81 777-7777")
+										.build()
+						))
+				.build());
     }
 }
