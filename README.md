@@ -27,9 +27,9 @@ Desafio Backend da Magalu, os rquisitos do projeto se encontram no arquivo [PROB
 ```
 git clone https://github.com/mguedesmelo/desafio-pitang.git
 ```
-2. Importe o projeto "magalu-notification-api" na sua IDE de preferência
+2. Importe o projeto "magalu-notification-api" na IDE de sua preferência
 
-### ℹ️ Para mais detalhes e efetuar os testes, basta executar o Swagger do projeto pelo endereço:
+## ℹ️ Para mais detalhes e efetuar os testes, basta executar o Swagger do projeto pelo endereço:
 ```
 http://localhost:8080/swagger-ui.html
 ```
