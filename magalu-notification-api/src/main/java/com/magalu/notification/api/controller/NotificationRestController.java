@@ -36,6 +36,12 @@ public class NotificationRestController extends BaseRestController {
         return ResponseEntity.status(HttpStatus.OK).body(this.notificationService.findAll());
     }
 
+    @Operation(summary = "Get pending notification list")
+    @GetMapping("/pending")
+    public ResponseEntity<List<NotificationResponseDto>> findPendingNotifications() {
+        return ResponseEntity.status(HttpStatus.OK).body(this.notificationService.findPendingNotifications());
+    }
+
     @Operation(summary = "Get a notification by its id")
     @GetMapping(value = "/{id}")
     public ResponseEntity<NotificationResponseDto> findById(@PathVariable("id") Long id) {
@@ -62,7 +68,7 @@ public class NotificationRestController extends BaseRestController {
         return ResponseEntity.noContent().build();
     }
 
-    @Operation(summary = "Activate/Deactivate a notification channel by notification id, "
+    @Operation(summary = "Activate/deactivate a notification channel by notification id, "
     		+ "pass null in the channel parameter to update all channels")
     @PatchMapping
     public ResponseEntity<NotificationResponseDto> activateDeactivate(

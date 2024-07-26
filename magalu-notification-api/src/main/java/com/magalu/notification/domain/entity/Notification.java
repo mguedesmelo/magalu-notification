@@ -37,7 +37,7 @@ public class Notification extends BaseEntity {
     private String message;
 
     @Builder.Default
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "notification_id")
     private List<NotificationChannel> notificationChannels = new ArrayList<>(0);
 }

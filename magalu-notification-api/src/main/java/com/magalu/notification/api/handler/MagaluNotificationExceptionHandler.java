@@ -13,6 +13,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -89,20 +90,27 @@ public class MagaluNotificationExceptionHandler {
 
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ExceptionHandler(AccessDeniedException.class)
-    public ResponseEntity<ResponseMessage> accesDeniedException(AccessDeniedException ex) {
+    public ResponseEntity<ResponseMessage> handleAccesDeniedException(AccessDeniedException ex) {
         return createErrorsResponseEntity("Insufficient privileges", HttpStatus.UNAUTHORIZED);
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(DataAccessException.class)
-    public ResponseEntity<ResponseMessage> dataAccessException(DataAccessException ex) {
+    public ResponseEntity<ResponseMessage> handleDataAccessException(DataAccessException ex) {
         return createErrorsResponseEntity("Failed to execute database statement", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ResponseMessage> globalException(Exception ex) {
+    public ResponseEntity<ResponseMessage> handleException(Exception ex) {
         return createErrorsResponseEntity("Unexpected request error", HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    public ResponseEntity<ResponseMessage> haneldMissingServletRequestParameterException(MissingServletRequestParameterException ex) {
+        return createErrorsResponseEntity("Missing request parameter: " + ex.getParameterName(), 
+        		HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
