@@ -138,16 +138,19 @@ class NotificationServiceTest {
         assertThrows(RecordNotFoundException.class, () -> notificationService.delete(1L));
     }
 
-    // TODO - Fix this test
     @Test
     void sendNotificationsSendsAndUpdatesNotifications() {
         Notification notification = new Notification();
         notification.setScheduledDateTime(LocalDateTime.now().minusHours(1));
         notification.setNotificationChannels(List.of(
-                NotificationChannel.builder().type("sms").build()
+                NotificationChannel.builder().
+                		type("sms")
+                		.sendTo("81 111-1111")
+                		.active(Boolean.TRUE)
+                		.build()
                 ));
         when(notificationRepository
-                .findPendingNotifications(any(LocalDateTime.class)))
+                .findAllNotificationsToSend(any(LocalDateTime.class)))
                 .thenReturn(List.of(notification));
         when(senderFactory.createSender(any())).thenReturn(new SmsSender());
         when(notificationRepository.save(any(Notification.class))).thenReturn(notification);

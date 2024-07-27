@@ -14,7 +14,7 @@ public interface NotificationRepository extends BaseRepository<Notification> {
             + "WHERE n.scheduledDateTime <= :now "
             + "AND nc.sentDateTime IS NULL "
             + "AND nc.active = TRUE")
-    List<Notification> findPendingNotifications(LocalDateTime now);
+    List<Notification> findAllNotificationsToSend(LocalDateTime now);
 
     @Query("SELECT DISTINCT n FROM Notification n JOIN n.notificationChannels nc "
     		+ "WHERE nc.sentDateTime IS NULL "

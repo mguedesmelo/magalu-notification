@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.magalu.notification.core.exception.BusinessException;
 import com.magalu.notification.core.exception.RecordNotFoundException;
 import com.magalu.notification.core.util.Constants;
+import com.magalu.notification.core.util.ObjectUtil;
 import com.magalu.notification.core.util.StringUtil;
 import com.magalu.notification.domain.business.NotificationBusinessValidation;
 import com.magalu.notification.domain.dto.NotificationRequestDto;
@@ -88,15 +89,21 @@ public class NotificationService extends BaseService {
     }
 
     public void sendNotifications() {
-		List<Notification> notificationsToSend = notificationRepository.findPendingNotifications(LocalDateTime.now());
+		List<Notification> notificationsToSend = notificationRepository.findAllNotificationsToSend(LocalDateTime.now());
 		notificationsToSend.forEach(notification -> {
-			notification.getNotificationChannels().forEach(notificationChannel -> {
-				BaseSender sender = senderFactory.createSender(notificationChannel.getType());
-				// Add improvement to resend notification in case of failure
-				if (sender.send(notificationChannel.getSendTo(), notification.getMessage())) {
-					notificationChannel.setSentDateTime(LocalDateTime.now());
-				}
-			});
+			notification.getNotificationChannels()
+					.stream()
+					.filter(notificationChannel -> 
+							notificationChannel.getActive() && 
+							ObjectUtil.isEmpty(notificationChannel.getSentDateTime()))
+					.toList()
+					.forEach(notificationChannel -> {
+						BaseSender sender = senderFactory.createSender(notificationChannel.getType());
+						// Add improvement to resend notification in case of failure
+						if (sender.send(notificationChannel.getSendTo(), notification.getMessage())) {
+							notificationChannel.setSentDateTime(LocalDateTime.now());
+						}
+					});
 			notificationRepository.save(notification);
 		});
     }
