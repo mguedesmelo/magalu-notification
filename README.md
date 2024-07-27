@@ -1,14 +1,14 @@
-# magalu-notification
-Desafio Backend da Magalu, os rquisitos do projeto se encontram no arquivo [PROBLEM.md](https://github.com/mguedesmelo/magalu-notification/blob/main/PROBLEM.md)
+# magalu-notification-java
+Versão Java do desafio backend da Magalu, os rquisitos do desafio se encontram no arquivo [PROBLEM.md](https://github.com/mguedesmelo/magalu-notification/blob/main/PROBLEM.md)
 
 ## 💻 Tecnologias
 <div style="display: inline_block"><br>
-  <img align="center" alt="mguedesmelo-java" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg">
-  <img align="center" alt="mguedesmelo-springboot" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/spring/spring-original-wordmark.svg">
-  <img align="center" alt="mguedesmelo-tomcat" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/tomcat/tomcat-original-wordmark.svg">
-  <img align="center" alt="mguedesmelo-hibernate" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/hibernate/hibernate-original-wordmark.svg">
-  <img align="center" alt="mguedesmelo-swagger" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/swagger/swagger-original.svg">
-  <img align="center" alt="mguedesmelo-eclipse" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/eclipse/eclipse-plain.svg">
+  <img align="center" alt="magalu-java" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg">
+  <img align="center" alt="magalu-springboot" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/spring/spring-original-wordmark.svg">
+  <img align="center" alt="magalu-tomcat" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/tomcat/tomcat-original-wordmark.svg">
+  <img align="center" alt="magalu-hibernate" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/hibernate/hibernate-original-wordmark.svg">
+  <img align="center" alt="magalu-swagger" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/swagger/swagger-original.svg">
+  <img align="center" alt="magalu-eclipse" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/eclipse/eclipse-plain.svg">
 </div>
 
 * [Java](https://www.java.com/) - Linguagem Backend
