@@ -25,7 +25,7 @@ Desafio Backend da Magalu, os rquisitos do projeto se encontram no arquivo [PROB
 1. Clone o repositório para baixar as pastas contendo o código fonte do projeto Java.
 
 ```
-git clone https://github.com/mguedesmelo/desafio-pitang.git
+git clone https://github.com/mguedesmelo/magalu-notification-java.git
 ```
 2. Importe o projeto "magalu-notification-api" na IDE de sua preferência
 
